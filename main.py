@@ -1,3 +1,5 @@
+import os
+from dotenv import load_dotenv
 from espn_api.football import League
 
 # report data is a list of (string, int)
@@ -26,8 +28,9 @@ def get_recent_activity():
     return activity
 
 if __name__ == '__main__':
+    load_dotenv()
     league = League(league_id=84319430,
                     year=2021,
-                    espn_s2='AEA%2F05DiuZwGD1ltUQSwGFPFWz%2F%2FwNSpL9%2FetbgcU3kaKGdyc5V9I4f7RmchIWXqL2ttcWdHHbkaA9paqx87xPm%2BflyZhOmlreMqM5Aine2XsOWlXvjCjKAeMJJQ%2F%2BL9yjNklvXZflunkMP7zrvaZ3dj5LAqBFI2xyMavr58woKmvyMBkB6wrkiqK4n2GfRSrHiVZx%2FaLKLcbaVY34oUJXnPlOliNOTqDsUwmYiOXQ%2BOcHoNOoK5Xq7a2ZADeSitoa%2FrLvmbrDi35rraKZEbTtYG',
-                    swid='5D1AFE30-CD32-48AA-BA37-C760CD50024C')
+                    espn_s2=os.getenv('ESPN_S2'),
+                    swid=os.getenv('SWID'))
     print_report(get_num_transactions())
